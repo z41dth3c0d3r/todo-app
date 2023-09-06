@@ -2,18 +2,18 @@
 
 namespace App\Actions\ToDo;
 
+use App\DTO\ToDo\CreateTodoDTO;
 use App\Models\Todo;
-use Illuminate\Http\Request;
 
 class CreateNewTodo
 {
-    public function handle(Request $request): Todo
+    public function handle(CreateTodoDTO $todo): Todo
     {
         return Todo::create([
-            'todo' => $request->todo,
-            'description' => $request->description,
-            'expireAt' => $request->expireAt,
-            'userId' => $request->user()->id
+            'todo' => $todo->todo,
+            'description' => $todo->description,
+            'expireAt' => $todo->expireAt,
+            'userId' => $todo->userId
         ]);
     }
 }

@@ -2,17 +2,17 @@
 
 namespace App\Actions\ToDo;
 
+use App\DTO\ToDo\UpdateTodoDTO;
 use App\Models\Todo;
-use Illuminate\Http\Request;
 
 class UpdateTodo
 {
-    public function handle(Request $request): Bool
+    public function handle(UpdateTodoDTO $todoData): Bool
     {
-        $todo = Todo::find($request->id);
-        $todo->todo = $request->todo;
-        $todo->description = $request->description;
-        $todo->expireAt = $request->expireAt;
+        $todo = Todo::find($todoData->id);
+        $todo->todo = $todoData->todo;
+        $todo->description = $todoData->description;
+        $todo->expireAt = $todoData->expireAt;
 
         return $todo->update();
     }

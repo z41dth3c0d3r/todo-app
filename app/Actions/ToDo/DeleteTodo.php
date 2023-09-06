@@ -2,15 +2,15 @@
 
 namespace App\Actions\ToDo;
 
+use App\DTO\ToDo\CompleteDeleteTodoDTO;
 use App\Models\Todo;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class DeleteTodo
 {
-    function handle(Request $request): Todo
+    function handle(CompleteDeleteTodoDTO $todoData): Todo
     {
-        $todo = User::find($request->user()->id)->todos()->find($request->id);
+        $todo = User::find($todoData->userId)->todos()->find($todoData->id);
 
         $todo->delete();
 
